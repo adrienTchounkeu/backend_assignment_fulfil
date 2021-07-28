@@ -14,8 +14,17 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
+from backend_assignment.views import ListProductView, CreateProductView, UpdateProductView, \
+    DeleteProductsView, FileUploadView, EmitView, UpdateWebhookView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path(r'upload-file', FileUploadView.as_view(), name='upload-file'),
+    path(r'products', ListProductView.as_view(), name='products-list'),
+    path(r'product', CreateProductView.as_view(), name='create-product'),
+    path(r'product/<int:pk>', UpdateProductView.as_view(), name='update-product'),
+    path(r'webhook/<str:name>', UpdateWebhookView.as_view(), name='update-hook'),
+    path(r'del-products', DeleteProductsView.as_view(), name='del-products'),
+    path(r'emit-message', EmitView.as_view(), name='emit-message')
 ]
