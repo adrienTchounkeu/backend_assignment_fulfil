@@ -69,6 +69,8 @@ or
 
    python3 manage.py runserver # on Linux
 
+To run the Celery worker, run the command
+
 .. code:: sh
 
     celery -A backend_assignment worker -l info --pool=solo # to launch celery
@@ -76,19 +78,18 @@ or
 NB: *The server generally starts on the port 8000*
 
 
+
 Heroku Deploy and Frontend app
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-The Backend API is available through the link `backend_assignment <https://backend-assignment-fulfil.herokuapp.com>`_
+The Backend API is available through the link `https://backend-assignment-fulfil.herokuapp.com <https://backend-assignment-fulfil.herokuapp.com>`_
 
 Assumptions & Issues
 ####################
 
-* To deploy my application, two add-ons were needed : postgresql and redis. I, therefore, connected my visa card account to heroku
-    because unable to add more than one add-on otherwise.
+* To deploy my application, two add-ons were needed : postgresql and redis. I, therefore, connected my visa card account to heroku because unable to add more than one add-on otherwise.
 
-* Due to some dynos(processes on Heroku) limitations, my backend is not working properly. Some endpoints are neither returning the good response
-    nor performing the request. Though, it is working perfectly in the local environment
+* Due to some dynos(processes on Heroku) limitations, my backend is not working properly. Some endpoints are neither returning the good response nor performing the request. Though, it is working perfectly in the local environment
 
 *NB :* You will see in the commit history, many useless commits when is was tyring to figure out heroku deployment errors
 
@@ -108,8 +109,7 @@ Before starting coding, We have to understand the problem and think of the solut
 * Choose a great tool to read large csv files : Pandas for instance
 * Create custom signals to dispatch when there's a manual create/update action.
 * After loosing a lot of time on trying to integrate SSE with Django, I finally choose SocketIO to send live streams events to the Client
-* To avoid high cost performance in our app, we use a worker to handle asynchronous tasks and a redis server to work along with Celery,
-and channels our socket events.
+* To avoid high cost performance in our app, we use a worker to handle asynchronous tasks and a redis server to work along with Celery, and channels our socket events.
 
 * A high in performance SQL Database : PostGreSQL for instance.
 
@@ -122,14 +122,14 @@ Assumptions
 
 To solve the problem, we did some hypothesis:
 
-* The file is stored in other for the worker to efficiently process the file.
+* The file is stored in other for the worker to efficiently process it.
 
 Solution
 ~~~~~~~~~~~
 
 To solve the problem, we use ``DataFrames`` and ``pandas as pd`` functions, workers, brokers, sockets and signals
 
-* read large CSV files with ``pd.read_csv`` in chunks(1000000)
+* read large CSV files with ``pd.read_csv`` in chunks(100000)
 * drop duplicates on sku in DataFrames with ``pd.drop_duplicates``
 * *bulk_create* django orm functions to store all the data at *once*
 * celery workers to perform asynchronous tasks, along with brokers
@@ -155,8 +155,7 @@ To optimize my solution, I think
 * implement parallelization : optimization reading CSV files
 * use SSE to establish a unidirectional connection with the client, for speed and security issues
 * after lots of research, Flask along with SQLAlchemy best fits the solution because it functions smoothly with SSE
-* Regarding deployment, we should implement the solution on a well-designed server (Linux for instance) rather than using a
-an easy deploy service(huge limitation)
+* Regarding deployment, we should implement the solution on a well-designed server (Linux for instance) rather than using an easy deploy service(huge limitation)
 
 Real-life Adaptation
 ~~~~~~~~~~~~~~~~~~~~
