@@ -18,13 +18,13 @@ Technologies used and Why ?
 To resolve this problem, we have used ``django``, ``djangorestframework``,
 ``celery & redis`` , ``django-signals`` , ``socketIO`` , ``PostgreSQL`` , and ``pandas``.
 
-* ``django``: among the best python web framework.
+* ``django``: among the best python web frameworks.
 * ``djangorestframework``: we are supposed to build a small REST API. Therefore, Django Rest Framework is suitable for the solution.
-* ``celery & redis``: perform asynchronous tasks with the redis broker
-* ``django-signals``: handle webhooks configurations.
-* ``socketIO``: send socket messages to the client. It's an alternative of SSE, not correctly working with Django
+* ``celery & redis``: performs asynchronous tasks with the redis broker
+* ``django-signals``: handles webhooks configurations.
+* ``socketIO``: sends socket messages to the client. It's an alternative of SSE, not correctly working with Django
 * ``PostgreSQL``: Database used to store our data.
-* ``pandas``: read the input Csv file and deduplicate the data.
+* ``pandas``: reads the input Csv file and deduplicate the data.
 
 
 Installation
@@ -36,7 +36,7 @@ the redis server and postgresql with django
 Download the project from GitHub
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-To clone my code, you run the command below in the CLI
+To clone my code, run the command below in the CLI
 
 .. code:: sh
 
@@ -48,7 +48,7 @@ You can also download the project by clicking the link `Backend_assignment_fulfi
 Install Dependencies
 ~~~~~~~~~~~~~~~~~~~~~
 
-After downloading the code, Open the CLI in the root directory and execute the command :
+After downloading the code, open the CLI in the root directory and execute the command :
 
 .. code:: sh
 
@@ -57,7 +57,7 @@ After downloading the code, Open the CLI in the root directory and execute the c
 
 NB: *"requirements.txt is a file which contains all the project dependencies"*
 
-All the project dependencies installed, run the command
+After all the project dependencies are installed, run the command
 
 .. code:: sh
 
@@ -96,7 +96,7 @@ Assumptions & Issues
 Frontend App
 ############
 
-* The Backend communicate with the Frontend app written in VueJs. You can access through the link `Frontend_assignment_fulfil <https://github.com/adrienTchounkeu/frontend_assignment_fulfil.git>`_
+* The Backend communicate with the Frontend app, written in VueJs. You can access through the link `Frontend_assignment_fulfil <https://github.com/adrienTchounkeu/frontend_assignment_fulfil.git>`_
 
 
 
@@ -104,7 +104,7 @@ Frontend App
 Analyzing The Solution
 ----------------------
 
-Before starting coding, We have to understand the problem and think of the solution. We have structured our project as follow :
+Before starting coding, we have to understand the problem and think of the solution. We have structured our project as follow :
 
 * Choose a great tool to read large csv files : Pandas for instance
 * Create custom signals to dispatch when there's a manual create/update action.
@@ -139,7 +139,7 @@ To solve the problem, we use ``DataFrames`` and ``pandas as pd`` functions, work
 Tests
 ~~~~~
 
-*No tests* have been done to test the endpoints and functions
+*No tests* were done to test the endpoints and functions
 
 
 
